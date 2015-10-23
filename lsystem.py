@@ -96,19 +96,25 @@ pythagoras = {
 	'move_forward': []
 }
 
+fractal_plant = {
+	'rules': {'X': 'F−[[X]+X]+F[+FX]−X', 'F': 'FF'},
+	'axiom': 'X',
+	'turn_angle': 20,
+	'draw_forward': ['F'],
+	'move_forward': []
+}
 
 # fractal = {
 # 	'rules': {},
 # 	'axiom': '',
 # 	'turn_angle': ,
 # 	'draw_forward': [],
-#	'move_forward': [],
-#	'stack_symbol': []
+#	'move_forward': []
 # }
 
-lsystem = LSystem(pythagoras)
+lsystem = LSystem(fractal_plant)
 
-new_str = lsystem.apply_rule(lsystem.axiom, 6)
+new_str = lsystem.apply_rule(lsystem.axiom, 5)
 print(new_str)
 
 lsystem.process_string(new_str)
