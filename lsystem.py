@@ -1,7 +1,6 @@
 import renderer
 
 class LSystem:
-	# def __init__(self, rules, axiom, turn_angle, forward_character):
 	def __init__(self, fractal):
 		self.rules = fractal['rules']
 		self.axiom = fractal['axiom']
@@ -9,7 +8,7 @@ class LSystem:
 		self.draw_forward = fractal['draw_forward']
 		self.move_forward = fractal['move_forward']
 
-		self.renderer = renderer.Renderer(800, 600)
+		self.renderer = renderer.Renderer(800, 600, 20)
 
 	def apply_rule(self, string, recursion_depth):
 		if recursion_depth == 0:
@@ -33,9 +32,9 @@ class LSystem:
 	def process_string(self, final_string):
 		for char in final_string:
 			if char in self.draw_forward:
-				self.renderer.draw_forward(6)
+				self.renderer.draw_forward()
 			elif char in self.move_forward:
-				self.renderer.move_forward(6)
+				self.renderer.move_forward()
 			elif char == '[':
 				self.renderer.stack()
 			elif char == ']':
@@ -104,7 +103,7 @@ fractal_plant = {
 	'move_forward': []
 }
 
-# fractal = {
+# f = {
 # 	'rules': {},
 # 	'axiom': '',
 # 	'turn_angle': ,
@@ -114,7 +113,7 @@ fractal_plant = {
 
 lsystem = LSystem(fractal_plant)
 
-new_str = lsystem.apply_rule(lsystem.axiom, 5)
+new_str = lsystem.apply_rule(lsystem.axiom, 6)
 print(new_str)
 
 lsystem.process_string(new_str)

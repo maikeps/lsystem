@@ -3,10 +3,12 @@ import math
 
 class Renderer:
 
-	def __init__(self, width, height):
+	def __init__(self, width, height, line_length):
 		self.master = tkinter.Tk()
 		self.canvas = tkinter.Canvas(width=width, height=height)
 		self.canvas.pack()
+
+		self.line_length = line_length
 
 		# initialize renderer position and angle
 		self.draw_x = width/2
@@ -18,17 +20,17 @@ class Renderer:
 		self.position_stack = []
 		self.angle_stack = []
 
-	def draw_forward(self, line_length):
+	def draw_forward(self):
 		start_x = self.draw_x
 		start_y = self.draw_y
 
-		self.move_forward(line_length)
+		self.move_forward()
 
 		self.canvas.create_line(start_x, start_y, self.draw_x, self.draw_y)
 
-	def move_forward(self, line_length):
-		self.draw_x = self.draw_x + math.cos(math.radians(self.angle)) * line_length
-		self.draw_y = self.draw_y - math.sin(math.radians(self.angle)) * line_length
+	def move_forward(self):
+		self.draw_x = self.draw_x + math.cos(math.radians(self.angle)) * self.line_length
+		self.draw_y = self.draw_y - math.sin(math.radians(self.angle)) * self.line_length
 
 	def turn_left(self, degrees):
 		self.angle = (self.angle + degrees) % 360
