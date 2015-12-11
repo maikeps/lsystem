@@ -12,7 +12,7 @@ class Renderer:
 
 		# initialize renderer position and angle
 		self.draw_x = width/2
-		self.draw_y = height
+		self.draw_y = height/2
 
 		# Angle starts at 90 degrees (up)
 		self.angle = starting_angle

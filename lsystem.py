@@ -1,6 +1,16 @@
 import renderer
 
 class LSystem:
+
+	# A Lindenmayer System consists of:
+	# -Axiom
+	# -Rules
+	# -Order(Level of detail)
+	# -Step Length(px)
+	# -Left Turning Angle
+	# -Right Turning Angle
+	# -Randomize Step(%)
+	# -Randomize Angle(%)
 	def __init__(self, fractal):
 		self.rules = fractal['rules']
 		self.axiom = fractal['axiom']
@@ -9,7 +19,7 @@ class LSystem:
 		self.move_forward = fractal['move_forward']
 		self.starting_angle = fractal['starting_angle']
 
-		self.renderer = renderer.Renderer(800, 600, 20, self.starting_angle)
+		self.renderer = renderer.Renderer(800, 600, 10, self.starting_angle)
 
 	def apply_rule(self, string, recursion_depth):
 		if recursion_depth == 0:
@@ -119,6 +129,21 @@ cesaro_koch = {
 	'starting_angle': 0
 }
 
+penrose = {
+    'rules': {
+    	'F': '',
+	    'W': 'YF++ZF----XF[-YF----WF]++',
+	    'X': '+YF--ZF[---WF--XF]+',
+	    'Y': '-WF++XF[+++YF++ZF]-',
+	    'Z': '--YF++++WF[+ZF++++XF]--XF'
+    },
+	'axiom': '[X]++[X]++[X]++[X]++[X]',
+	'turn_angle': 36,
+	'draw_forward': ['F'],
+	'move_forward': [],
+	'starting_angle': 0
+}
+
 # f = {
 # 	'rules': {},
 # 	'axiom': '',
@@ -128,9 +153,8 @@ cesaro_koch = {
 #	'starting_angle': 0
 # }
 
-lsystem = LSystem(cesaro_koch)
+lsystem = LSystem(penrose)
 
-new_str = lsystem.apply_rule(lsystem.axiom, 3)
-print(new_str)
+new_str = lsystem.apply_rule(lsystem.axiom, 2)
 
 lsystem.process_string(new_str)
