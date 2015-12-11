@@ -7,8 +7,9 @@ class LSystem:
 		self.turn_angle = fractal['turn_angle']
 		self.draw_forward = fractal['draw_forward']
 		self.move_forward = fractal['move_forward']
+		self.starting_angle = fractal['starting_angle']
 
-		self.renderer = renderer.Renderer(800, 600, 20)
+		self.renderer = renderer.Renderer(800, 600, 20, self.starting_angle)
 
 	def apply_rule(self, string, recursion_depth):
 		if recursion_depth == 0:
@@ -52,7 +53,8 @@ sierpinski = {
 	'axiom': 'A',
 	'turn_angle': 60,
 	'draw_forward': ['A', 'B'],
-	'move_forward': []
+	'move_forward': [],
+	'starting_angle': 0
 }
 
 koch = {
@@ -60,7 +62,8 @@ koch = {
 	'axiom': 'F',
 	'turn_angle': 90,
 	'draw_forward': ['F'],
-	'move_forward': []
+	'move_forward': [],
+	'starting_angle': 0
 }
 
 cantor = {
@@ -76,7 +79,8 @@ fractal = {
 	'axiom': 'F',
 	'turn_angle': 45,
 	'draw_forward': ['F'],
-	'move_forward': []
+	'move_forward': [],
+	'starting_angle': 0
 }
 
 dragon = {
@@ -84,7 +88,8 @@ dragon = {
 	'axiom': 'FX',
 	'turn_angle': 90,
 	'draw_forward': ['F'],
-	'move_forward': []
+	'move_forward': [],
+	'starting_angle': 0
 }
 
 pythagoras = {
@@ -92,7 +97,8 @@ pythagoras = {
 	'axiom': '0',
 	'turn_angle': 45,
 	'draw_forward': ['0', '1'],
-	'move_forward': []
+	'move_forward': [],
+	'starting_angle': 0
 }
 
 fractal_plant = {
@@ -100,7 +106,17 @@ fractal_plant = {
 	'axiom': 'X',
 	'turn_angle': 20,
 	'draw_forward': ['F'],
-	'move_forward': []
+	'move_forward': [],
+	'starting_angle': 0
+}
+
+cesaro_koch = {
+	'rules': {'F': 'F+F--F+F'},
+	'axiom': 'F',
+	'turn_angle': 85,
+	'draw_forward': ['F'],
+	'move_forward': [],
+	'starting_angle': 0
 }
 
 # f = {
@@ -108,12 +124,13 @@ fractal_plant = {
 # 	'axiom': '',
 # 	'turn_angle': ,
 # 	'draw_forward': [],
-#	'move_forward': []
+#	'move_forward': [],
+#	'starting_angle': 0
 # }
 
-lsystem = LSystem(fractal_plant)
+lsystem = LSystem(cesaro_koch)
 
-new_str = lsystem.apply_rule(lsystem.axiom, 6)
+new_str = lsystem.apply_rule(lsystem.axiom, 3)
 print(new_str)
 
 lsystem.process_string(new_str)

@@ -3,7 +3,7 @@ import math
 
 class Renderer:
 
-	def __init__(self, width, height, line_length):
+	def __init__(self, width, height, line_length, starting_angle):
 		self.master = tkinter.Tk()
 		self.canvas = tkinter.Canvas(width=width, height=height)
 		self.canvas.pack()
@@ -15,7 +15,7 @@ class Renderer:
 		self.draw_y = height
 
 		# Angle starts at 90 degrees (up)
-		self.angle = 90
+		self.angle = starting_angle
 
 		self.position_stack = []
 		self.angle_stack = []
